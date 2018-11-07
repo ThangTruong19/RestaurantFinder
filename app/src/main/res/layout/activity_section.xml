@@ -8,20 +8,30 @@
     tools:layout_editor_absoluteY="25dp">
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/emailtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/status"
+        app:layout_constraintStart_toStartOf="@+id/status"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/emailtxt" />
 
     <Button
         android:id="@+id/signout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="33dp"
         android:text="SiGNOUT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -7,6 +7,7 @@
     tools:context=".SignInMethod"
     tools:layout_editor_absoluteY="25dp">
 
+
     <ImageView
         android:id="@+id/mainbg"
         android:layout_width="0dp"
@@ -24,71 +25,81 @@
         android:background="@drawable/gradientbg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="48dp"
+        android:src="@mipmap/ic_launcher_foreground"
+        app:layout_constraintBottom_toTopOf="@+id/btn_google"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btn_google"
-        android:layout_width="220dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="266dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginRight="37dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_facebook"
-        app:layout_constraintEnd_toEndOf="@+id/btn_facebook"
-        app:layout_constraintStart_toStartOf="@+id/btn_facebook"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/btn_facebook"
-        android:layout_width="220dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="18dp"
+        android:layout_width="328dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_loginac"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+    <Button
+        android:id="@+id/btn_loginac"
+        android:layout_width="328dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp"
+        android:layout_marginBottom="41dp"
+        android:background="@drawable/loginac"
+        android:text="Sign in with email"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_google" />
 
     <Button
-        android:id="@+id/btn_loginac"
-        android:layout_width="300dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="58dp"
-        android:layout_marginLeft="58dp"
-        android:layout_marginEnd="58dp"
-        android:layout_marginRight="58dp"
-        android:layout_marginBottom="19dp"
-        android:background="@drawable/loginac"
-        android:text="@string/btn_login"
-        android:textColor="#3d2f2f"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_reset"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_facebook" />
-
-    <Button
         android:id="@+id/btn_reset"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="21dp"
         android:background="@null"
         android:text="@string/btn_forgot_password"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/btn_su"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_loginac" />
 
     <Button
         android:id="@+id/btn_su"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="153dp"
+        android:layout_marginBottom="81dp"
         android:background="@null"
         android:text="Not a member? Register NOW"
         android:textAllCaps="false"
