@@ -55,8 +55,8 @@
                 android:singleLine="true"
                 android:textColorHint="#c62828"
                 tools:ignore="InvalidImeActionId" />
-            android:textColor="@android:color/white"
-            tools:ignore="InvalidImeActionId" />
+                android:textColor="@android:color/white"
+                tools:ignore="InvalidImeActionId" />
 
         </android.support.design.widget.TextInputLayout>
 

@@ -42,20 +42,20 @@ public class RegisterActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnResetPassword = (Button) findViewById(R.id.btn_reset_password);
         btnbackrg=(Button)findViewById(R.id.btn_back_rg);
-        btnResetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegisterActivity.this, ResetPassword.class));
-            }
+         btnResetPassword.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(RegisterActivity.this, ResetPassword.class));
+           }
         });
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+           btnSignIn.setOnClickListener(new View.OnClickListener() {
+           @Override
+              public void onClick(View v) {
+                  Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                 startActivity(intent);
+             }
+           });
         btnbackrg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

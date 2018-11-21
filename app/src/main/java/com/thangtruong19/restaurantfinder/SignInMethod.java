@@ -97,7 +97,9 @@ public class SignInMethod extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(SignInMethod.this, SectionActivity.class));
+            //startActivity(new Intent(SignInMethod.this, SectionActivity.class));
+            startActivity(new Intent(SignInMethod.this, MapsActivity.class));
+
             finish();
         }
         // [END initialize_auth]
@@ -159,7 +161,8 @@ public class SignInMethod extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent i=new Intent(SignInMethod.this,SectionActivity.class);
+                            //Intent i=new Intent(SignInMethod.this,SectionActivity.class);
+                            Intent i=new Intent(SignInMethod.this,MapsActivity.class);
                             startActivity(i);
                             finish();
                         } else {
