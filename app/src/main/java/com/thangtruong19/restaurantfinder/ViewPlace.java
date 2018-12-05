@@ -26,6 +26,7 @@ public class ViewPlace extends AppCompatActivity {
     RatingBar ratingBar;
     TextView opening_hours,place_address,place_name;
     Button btnViewOnMap;
+    Button btnViewMenu;
 
     IGoogleApiService mService;
 
@@ -42,11 +43,20 @@ public class ViewPlace extends AppCompatActivity {
         place_address=findViewById(R.id.place_address);
         place_name=findViewById(R.id.place_name);
         btnViewOnMap=findViewById(R.id.btnShowMap);
+        btnViewMenu=findViewById(R.id.btnViewMenu);
 
         btnViewOnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(mPlace.getResult().getUrl()));
+                startActivity(intent);
+            }
+        });
+
+        btnViewMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ViewPlace.this,ViewMenu.class);
                 startActivity(intent);
             }
         });
