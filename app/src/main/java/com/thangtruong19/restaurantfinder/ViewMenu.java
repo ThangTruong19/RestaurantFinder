@@ -1,9 +1,12 @@
 package com.thangtruong19.restaurantfinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -48,10 +51,9 @@ public class ViewMenu extends AppCompatActivity {
             case "Highland Coffee":
                 referenceString="highland";
                 break;
-                default:
-                    referenceString="noMenu";
+            default:
+                referenceString="noMenu";
         }
-
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child(referenceString);
 
@@ -62,7 +64,22 @@ public class ViewMenu extends AppCompatActivity {
         List<RestaurantMenu> restaurantMenus=new ArrayList<>();
         menuAdapter=new MenuAdapter(this,R.layout.item_menu,restaurantMenus);
         menuListview.setAdapter(menuAdapter);
-
+        menuListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                RestaurantMenu currentMenu=menuAdapter.getItem(position);
+                Intent intent=new Intent(ViewMenu.this,DetailActivity.class);
+                String key1="name";
+                String value1=currentMenu.getName();
+                String key2="price";
+                String value2=Integer.toString(currentMenu.getPrice());
+                Bundle bundle=new Bundle();
+                bundle.putString(key1,value1);
+                bundle.putString(key2,value2);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         if(childEventListener==null){
             childEventListener=new ChildEventListener() {
                 @Override
@@ -93,5 +110,11 @@ public class ViewMenu extends AppCompatActivity {
             };
             databaseReference.addChildEventListener(childEventListener);
         }
+    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ViewMenu.this,MapsActivity.class));
+        finish();
+        super.onBackPressed();
     }
 }

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212121"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".DetailActivity">
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:color="@android:color/black"
+        android:paddingBottom="16dp"
+        android:text="-"
+        android:textColor="#d6d6d6"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="11dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:color="@android:color/black"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="Destination"
+        android:textColor="#d6d6d6"
+        tools:layout_editor_absoluteX="51dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <fragment
+        android:id="@+id/place_autocomplete_fragment"
+        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bgsearch"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="162dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:color="@android:color/black"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="Quantity"
+        android:textColor="#d6d6d6"
+        tools:layout_editor_absoluteX="170dp"
+        tools:layout_editor_absoluteY="96dp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="#ff7700"
+        android:onClick="decrement"
+        android:text="-"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="245dp" />
+
+    <TextView
+        android:id="@+id/quantity_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:color="@android:color/black"
+        android:padding="16dp"
+        android:text="1"
+        android:textColor="#d6d6d6"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="239dp" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="#ff7700"
+        android:onClick="increment"
+        android:text="+"
+        tools:layout_editor_absoluteX="243dp"
+        tools:layout_editor_absoluteY="239dp" />
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:color="@android:color/black"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="Order Summary"
+        android:textColor="#d6d6d6"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="308dp" />
+
+    <TextView
+        android:id="@+id/summary_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:color="@android:color/black"
+        android:paddingBottom="16dp"
+        android:text="-"
+        android:textColor="#d6d6d6"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="363dp" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+    <Button
+        android:id="@+id/btn_pickdate"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        android:background="#ff7700"
+        android:paddingLeft="@dimen/spacing_xlarge"
+        android:paddingRight="@dimen/spacing_xlarge"
+        android:text="PICK DELIVERRY DATE"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="423dp" />
+
+    <Button
+        android:id="@+id/btn_picktime"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        android:background="#ff7700"
+        android:paddingLeft="@dimen/spacing_xlarge"
+        android:paddingRight="@dimen/spacing_xlarge"
+        android:text="PICK DELIVERRY TIME"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="478dp" />
+</LinearLayout>
+
+    <Button
+        android:id="@+id/btn_order"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ff7700"
+        android:drawableLeft="@drawable/ic_check"
+        android:onClick="submitOrder"
+        android:padding="15dp"
+        android:text="ORDER"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/text_size_small"
+        tools:layout_editor_absoluteY="629dp" />
+</LinearLayout>

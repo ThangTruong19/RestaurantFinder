@@ -1,6 +1,8 @@
 package com.thangtruong19.restaurantfinder;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -10,19 +12,33 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.bottomappbar.BottomAppBar;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.res.Configuration;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -44,14 +60,44 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.wallet.WalletConstants;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.rengwuxian.materialedittext.MaterialEditText;
 import com.thangtruong19.restaurantfinder.Model.MyPlaces;
 import com.thangtruong19.restaurantfinder.Model.Results;
+import com.thangtruong19.restaurantfinder.Model.User;
+import com.thangtruong19.restaurantfinder.Model.UserAccountSettings;
 import com.thangtruong19.restaurantfinder.Remote.IGoogleApiService;
+import com.thangtruong19.restaurantfinder.payment.PaymentMethod;
+import com.thangtruong19.restaurantfinder.utils.StringManipulation;
 
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.view.View;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,7 +106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ,GoogleApiClient.ConnectionCallbacks
         ,GoogleApiClient.OnConnectionFailedListener
         ,LocationListener {
-
+    BottomAppBar bar;
     private static final int MY_REQUEST_CODE = 1000 ;
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
@@ -75,13 +121,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final LatLngBounds LAT_LNG_BOUNDS=new LatLngBounds(new LatLng(-40,-168),new LatLng(71,136));
     protected GeoDataClient mGeoDataClient;
     private static final String TAG="MapActivity";
-
     IGoogleApiService mService;
-
+    FirebaseAuth auth;
+    FirebaseUser user;
+    private BottomSheetDialog bottomSheetDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_maps2);
         if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.M){
             checkLocationPermission();
         }
@@ -100,7 +147,68 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mGps=findViewById(R.id.ic_gps);
         mGeoDataClient= Places.getGeoDataClient(this,null);
         initSearchText();
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
+        bar=(BottomAppBar)findViewById(R.id.bar);
+        bar.replaceMenu(R.menu.bottom_bar_menu);
+        bar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                int id=menuItem.getItemId();
+                switch(id){
+                    case R.id.signout:{
+                        auth.signOut();
+                        finish();
+                        Intent i=new Intent(MapsActivity.this,SignInMethod.class);
+                        startActivity(i);
+                        break;
+                    }
+                    case R.id.rating:{
+                        Toast.makeText(MapsActivity.this,"Thank you for rating us",Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
+        bar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final View bottomNavigation=getLayoutInflater().inflate(R.layout.navigation_menu,null);
+                bottomSheetDialog =new BottomSheetDialog(MapsActivity.this);
+                bottomSheetDialog.setContentView(bottomNavigation);
+                bottomSheetDialog.show();
+
+                NavigationView navigationView=bottomNavigation.findViewById(R.id.navigation_menu);
+                navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        int id=menuItem.getItemId();
+                        switch (id){
+                            case R.id.user_profile:{
+                                startActivity(new Intent(MapsActivity.this,UserProfile.class));
+                                break;
+                            }
+                            case R.id.settings:{
+                                break;
+                            }
+                        }
+                        return false;
+                    }
+                });
+            }
+        });
+        FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MapsActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
+
 
     private void initSearchText(){
         Log.d(TAG,"InitSearchText: init");

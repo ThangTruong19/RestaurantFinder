@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "198005710222",
-    "firebase_url": "https://restaurantfinder-72aa0.firebaseio.com",
-    "project_id": "restaurantfinder-72aa0",
-    "storage_bucket": "restaurantfinder-72aa0.appspot.com"
+    "project_number": "233081031372",
+    "firebase_url": "https://restaurantfinderplus-a53bf.firebaseio.com",
+    "project_id": "restaurantfinderplus-a53bf",
+    "storage_bucket": "restaurantfinderplus-a53bf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:198005710222:android:2b6bf072eb0e1d75",
+        "mobilesdk_app_id": "1:233081031372:android:2b6bf072eb0e1d75",
         "android_client_info": {
           "package_name": "com.thangtruong19.restaurantfinder"
         }
       },
       "oauth_client": [
         {
-          "client_id": "198005710222-ek397r3p1i3ptvi9j16d86ud77fl1ngi.apps.googleusercontent.com",
+          "client_id": "233081031372-5nhatafbq308pimlglfe7vkvt2eqec0p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.thangtruong19.restaurantfinder",
-            "certificate_hash": "5f128ae2c26ba388639160b002e66bc6eb1a9136"
+            "certificate_hash": "896a504d2de15087e0fc180b1babe9d39df02ede"
           }
         },
         {
-          "client_id": "198005710222-8bd286feq39ujl6suuuoe5sbu1a18mnv.apps.googleusercontent.com",
+          "client_id": "233081031372-pltg9ki56blpga6o1bocrmhomet89mef.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB00OnylsbYN_qpoQWhc8ebBZjckz1lJEE"
+          "current_key": "AIzaSyBFzQc_z6CekY0MK4tnJyrNtxxM3Su8pd4"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "198005710222-8bd286feq39ujl6suuuoe5sbu1a18mnv.apps.googleusercontent.com",
+              "client_id": "233081031372-pltg9ki56blpga6o1bocrmhomet89mef.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

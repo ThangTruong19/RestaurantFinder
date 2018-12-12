@@ -1,6 +1,7 @@
 package com.thangtruong19.restaurantfinder;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.hsalf.smilerating.SmileRating;
 import com.squareup.picasso.Picasso;
 import com.thangtruong19.restaurantfinder.PlaceModel.PlaceDetail;
 import com.thangtruong19.restaurantfinder.Remote.IGoogleApiService;
@@ -25,11 +28,8 @@ public class ViewPlace extends AppCompatActivity {
     ImageView photo;
     RatingBar ratingBar;
     TextView opening_hours,place_address,place_name;
-    Button btnViewOnMap;
-    Button btnViewMenu;
-
+    Button btnViewOnMap,btnViewMenu;
     IGoogleApiService mService;
-
     PlaceDetail mPlace;
 
     @Override
@@ -38,10 +38,10 @@ public class ViewPlace extends AppCompatActivity {
         setContentView(R.layout.activity_view_place);
 
         photo=findViewById(R.id.photo);
-        ratingBar=findViewById(R.id.ratingBar);
         opening_hours=findViewById(R.id.open_hours);
         place_address=findViewById(R.id.place_address);
         place_name=findViewById(R.id.place_name);
+        ratingBar=(RatingBar)findViewById(R.id.ratingBar);
         btnViewOnMap=findViewById(R.id.btnShowMap);
         btnViewMenu=findViewById(R.id.btnViewMenu);
 
@@ -52,7 +52,6 @@ public class ViewPlace extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         btnViewMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +59,6 @@ public class ViewPlace extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         if(Common.currentResult.getPhotos() !=null && Common.currentResult.getPhotos().length>0) {
             Picasso.get()
                     .load(getPhotoOfPlace(Common.currentResult.getPhotos()[0].getPhoto_reference(),1000))

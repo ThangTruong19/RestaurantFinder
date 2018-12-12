@@ -5,13 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -27,12 +28,6 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ResetPassword" />
-        <activity
-            android:name=".SectionActivity"
-            android:exported="true" />
         <activity
             android:name=".SignInMethod"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -59,7 +54,14 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".ViewPlace" />
-        <activity android:name=".ViewMenu"></activity>
+        <activity android:name=".UserProfile" />
+        <activity android:name=".payment.PaymentMethod" />
+        <activity android:name=".payment.CardMethod" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".EditProfile" />
+        <activity android:name=".ViewMenu" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".OrderSummary"></activity>
     </application>
 
 </manifest>
